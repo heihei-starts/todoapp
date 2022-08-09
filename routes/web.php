@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'homeGet'])
+    ->name('home.index');
+#登録 GET　リクエスト
+Route::get('/register', [ClientController::class, 'registerGet'])
+    ->name('client.index');
+#登録 POST リクエスト
+Route::post('register', [ClientController::class, 'registerPost'])
+    ->name('client.create');
+
